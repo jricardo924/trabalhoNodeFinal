@@ -1,6 +1,9 @@
-const express = require('express');
-const app = express(); // Inicializa um objeto de aplicação Express
+require('dotenv').config();
+console.log('Chave: ', process.env.SECRET_KEY);
 
+const express = require('express');
+const routerSeg = express.Router();
+const app = express(); // Inicializa um objeto de aplicação Express
 const morgan = require('morgan'); 
 app.use(morgan('common'));
 
@@ -24,6 +27,9 @@ app.use ('/api', routerAPI);
 
 const routerAPI2 = require('./routes/routerAPI2');
 app.use ('/api/v2', routerAPI2);
+
+const routerSeq = require('./routes/routerSeg');
+app.use ('/seg', routerSeg);
 
 
 app.use ((req, res) => {    
